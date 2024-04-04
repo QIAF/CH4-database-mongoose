@@ -20,8 +20,6 @@ const getCustomers = async (req, res, next) => {
     });
   }
 };
-
-
 const getCustomerById = async (req, res, next) => {
   try{
     const id = req.params.id;
@@ -76,7 +74,7 @@ const deleteCustomer = async (req, res) => {
       message: "berhasil delete data",
     });
 
-  } catch (errr){
+  } catch (err){
     res.status(400).json({
       status:"fail",
       message: err.message,

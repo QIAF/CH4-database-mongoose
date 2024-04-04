@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 //schema kyak model struktur dari datanya
+//remodel
 const customerSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -10,15 +11,21 @@ const customerSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
-  phoneNumber:{
-    type: Number,
-    required: true,
-  },
-  city: String,
-  country: {
+  role:{// yang masuk ke web
     type: String,
-    required: true,
-    default:"Indonesia",
+    enum:['admin', 'user'],
+    default:'user'// kalo ada yang register ya cuma user saja
+  },
+  active:{
+    type: Boolean,
+    default:true,
+  },
+  photo:{
+    type:String,
+    default:"user-default.jpg"
+  },
+  password:{
+    type: String,
   },
 });
 

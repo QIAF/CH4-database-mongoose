@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "660e6cd050bc92b4153f99cd",
+    "name": "Leblanc Conner",
+    "email": "leblancconner@cytrex.com",
+    "role": "admin",
+    "active": false,
+    "photo": "user-5.jpg",
+    "password": ""
+  },
+  {
+    "_id": "660e6cd060187618afa84abe",
+    "name": "Lori Pierce",
+    "email": "loripierce@cytrex.com",
+    "role": "user",
+    "active": false,
+    "photo": "user-5.jpg",
+    "password": ""
+  },
+  {
+    "_id": "660e6cd0318d152dd4e90606",
+    "name": "Rodgers Garner",
+    "email": "rodgersgarner@cytrex.com",
+    "role": "admin",
+    "active": true,
+    "photo": "user-2.jpg",
+    "password": ""
+  },
+  {
+    "_id": "660e6cd01b31f164a8ee9217",
+    "name": "Sherry Ashley",
+    "email": "sherryashley@cytrex.com",
+    "role": "admin",
+    "active": false,
+    "photo": "user-1.jpg",
+    "password": ""
+  },
+  {
+    "_id": "660e6cd0fc4d4a53f8c60a19",
+    "name": "Blanchard Patrick",
+    "email": "blanchardpatrick@cytrex.com",
+    "role": "user",
+    "active": true,
+    "photo": "user-1.jpg",
+    "password": ""
+  }
+]
