@@ -1,15 +1,60 @@
 const fs = require("fs");
-const Customer = require("../models/customerModel")
+const Customer = require("../models/customerModel");
+const { stringify } = require("querystring");
 
 const getCustomers = async (req, res, next) => {
   try{
+    //1. basic filter
     const queryObject = { ...req.query};
     const excludedColumn = ['page', 'sort', 'limit','fields'];
     excludedColumn.forEach((el) => delete queryObject[el]);
 
     console.log(req.query, queryObject);
 
-    const customers = await Customer.find(queryObject);
+
+    //2 advance filter
+    //age
+    let queryStr =JSON.stringify(queryObject);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) =>`$${match}`) //=> $gt, $gte, $lte, $lt
+    queryStr = JSON.parse(queryStr);
+    console.log(req.query);
+
+    let query = Customer.find(queryStr);
+
+    //3. Sorting (urutan)
+    // sorting descending = name, descending = -name
+    if (req.query.sort){
+      const sortBy = req.query.sort.split(',').join( );// mengganti koma
+      console.log(sortBy);
+      query = query.sort(sortBy);
+    }else{
+      query = query.sort("-createdAt")
+    }
+
+    //4. field limiting
+    if(req.query.fields){
+      const fields = req.query.fields.split(",").join(" ");
+      query = query.select(fields);
+    } else {
+      query = query.select("-__v");
+    }
+    //5. Pagination (limit)
+    //page=3&limit=2 ==> data ke 5 dan 6
+    const page = req.query.page * 1 || 1
+    const limit = req.query.limit * 1|| 5
+    const skip = (page - 1) * limit;
+    query = query.skip(skip).limit(limit);
+
+    if (req.query.page){
+      const numCustomers = await Customer.countDocuments(); //kasih respon data 
+      if(skip>numCustomers) throw new Error("Page does not exist!");//jika kondisi skip lebih dari numCustomer kasih erroe
+    }
+
+    //
+
+
+    //eksekusi query
+    const customers = await query;
 
     res.status(200).json({
       status: "success",

@@ -7,6 +7,7 @@ const customerSchema = new mongoose.Schema({
     type: String,
     required: [true, "Name cannot be empty"] ,
   },
+  age: Number,
   email: {
     type: String,
     unique: true,
@@ -26,7 +27,15 @@ const customerSchema = new mongoose.Schema({
   },
   password:{
     type: String,
+    select:false,// jangan tampilin pass
+
   },
+  createdAt:{
+    type: Date,
+    default: Date.now()
+  }
+
+
 });
 
 const Customer = mongoose.model("Customer", customerSchema);
