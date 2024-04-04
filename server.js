@@ -15,45 +15,6 @@ mongoose
   // console.log(con.connections);
 });
 
-//schema kyak model struktur dari datanya
-const customerSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Name cannot be empty"] ,
-  },
-  email: {
-    type: String,
-    unique: true,
-  },
-  phoneNumber:{
-    type: Number,
-    required: true,
-  },
-  city: String,
-  country: {
-    type: String,
-    required: true,
-    default:"Indonesia",
-  },
-});
-
-const Customer = mongoose.model('Customer', customerSchema);
-
-const customerTest = new Customer ({
-  name: 'coba4',
-  email: 'coba4a@gmail.com',
-  phoneNumber: '0853859458'
-})
-customerTest
-.save() // suuccese handler
-.then(doc => {
-  console.log(doc);
-})
-.catch ((err)=>{ //error handler
-  console.log("ERROR : " + err);
-});
-
-
 app.listen(PORT, () => {
   console.log(`APP running on port : ${PORT}`);
 });
