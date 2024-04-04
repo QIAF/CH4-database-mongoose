@@ -1,0 +1,5 @@
+1. npm init
+2. npm install nodemon express morgan 
+3. npm install dotenv
+4. buka mongocompass, create database
+5. salin url di database
