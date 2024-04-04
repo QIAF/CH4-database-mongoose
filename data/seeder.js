@@ -1,7 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const fs = require("fs");
-const Customer = require("../models/customersModel");
+const Customer = require("../models/customerModel");
 
 const DB = process.env.DATABASE;
 
@@ -15,6 +15,7 @@ mongoose
 });
 
 const customers = JSON.parse(fs.readFileSync('./data/customers.json', 'utf8'));
+
 const importData = async () => {
     try{
         console.log (customers);
@@ -26,10 +27,9 @@ const importData = async () => {
     process.exit();
 };
 
-console.log (process.argv);
 const clearData = async () => {
     try{
-        await Customer.deleteMany()
+        await Customer.deleteMany();
         console.log("Data sukses di Clear");
     }catch(err){
         console.log(err);
@@ -40,5 +40,5 @@ if (process.argv[2] == "--import"){
     importData()
 }else if (process.argv[2] == "--delete"){
     clearData();
-}
+};
 

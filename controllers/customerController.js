@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Customer = require("../models/customersModel")
+const Customer = require("../models/customerModel")
 
 const getCustomers = async (req, res, next) => {
   try{

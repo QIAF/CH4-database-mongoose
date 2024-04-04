@@ -1,5 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+
+
+const DB = process.env.DATABASE;
+
+mongoose.connect(DB).then((con) => {
+	console.log('connection ke database sukses');
+});
 
 const app = express();
 

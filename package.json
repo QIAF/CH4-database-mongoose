@@ -7,7 +7,7 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "import-data":"node ./data/seeder.js --import",
-    "clear-data":"node ./data/seeder.js --clear"
+    "clear-data":"node ./data/seeder.js --delete"
 
   },
   "author": "",
